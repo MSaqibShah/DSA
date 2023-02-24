@@ -124,13 +124,39 @@ int linearSearchFront(struct Array *arr, int key){
     return -1;
 }
 
+int binarySearch(struct Array *arr, int key){
+    int low = 0, high = arr->length;
+    int mid = (low+high)/2;
+    int i=0;
+    while(low<=high){
+        if(arr->array[mid]==key){
+            return mid;
+        }
+        else if(key < arr->array[mid] ){
+            high = mid-1;
+            mid = (low+high)/2;
+
+        }
+        else{
+            low = mid+1;
+            mid = (low+high)/2;
+
+        }
+    }
+
+    return -1;
+}
+
 int main(){
-    struct Array arr;
+    struct Array arr, arr1;
     
     arr = initArray(10);
+    arr1 = initArray(10);
     for(int i=0; i<5; i++){
         arr.array[i] = i;
         arr.length++; 
+        arr1.array[i] = i;
+        arr1.length++; 
     }
 
     displayArray(arr);
@@ -147,6 +173,9 @@ int main(){
 
     printf("%d\n", linearSearchFront(&arr, 500));
     displayArray(arr);
+
+    displayArray(arr1);
+    printf("%d\n ", binarySearch(&arr1, 2));
 
 
 
