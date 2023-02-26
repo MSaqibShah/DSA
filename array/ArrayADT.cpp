@@ -147,6 +147,28 @@ int binarySearch(struct Array *arr, int key){
     return -1;
 }
 
+int binarySearchRecursive(struct Array arr, int key){
+    static int low=0, high, mid;
+    high = arr.length;
+    mid = (low+high)/2;
+
+    if(high < low){
+        return -1;
+    }
+    if(arr.array[mid]==key){
+        return mid;
+    }
+    else if(key < arr.array[mid]){
+        arr.length = mid-1; 
+        binarySearchRecursive(arr,key); 
+    }
+    else{
+        low = mid + 1;
+        binarySearchRecursive(arr,key); 
+    }
+}
+
+
 int main(){
     struct Array arr, arr1;
     
@@ -155,7 +177,7 @@ int main(){
     for(int i=0; i<5; i++){
         arr.array[i] = i;
         arr.length++; 
-        arr1.array[i] = i;
+        arr1.array[i] = i*10;
         arr1.length++; 
     }
 
@@ -175,7 +197,7 @@ int main(){
     displayArray(arr);
 
     displayArray(arr1);
-    printf("%d\n ", binarySearch(&arr1, 2));
+    printf("%d\n ", binarySearchRecursive(arr1, 30));
 
 
 
