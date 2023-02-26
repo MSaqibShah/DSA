@@ -197,7 +197,11 @@ int main(){
     displayArray(arr);
 
     displayArray(arr1);
+    printf("%d\n ", binarySearch(&arr1, 30));
+    displayArray(arr1);
     printf("%d\n ", binarySearchRecursive(arr1, 30));
+
+    
 
 
 
